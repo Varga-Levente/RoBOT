@@ -7,10 +7,11 @@
 #include "soc/soc.h"             // disable brownout problems
 #include "soc/rtc_cntl_reg.h"    // disable brownout problems
 #include "esp_http_server.h"
+#include "Ticker.h"
 
 // Replace with your network credentials
-const char* ssid = "****";
-const char* password = "****";
+const char* ssid = "********";
+const char* password = "********";
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
@@ -43,6 +44,9 @@ const char* password = "****";
 #define MOTOR_1_PIN_2    15
 #define MOTOR_2_PIN_1    13
 #define MOTOR_2_PIN_2    12
+
+Ticker stopTimer;
+bool stopFlag = false;
 
 static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" PART_BOUNDARY;
 static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
@@ -208,6 +212,14 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 1);
     digitalWrite(MOTOR_2_PIN_2, 0);
+    stopFlag = false;
+    stopTimer.attach(5, [](){
+      digitalWrite(MOTOR_1_PIN_1, 0);
+      digitalWrite(MOTOR_1_PIN_2, 0);
+      digitalWrite(MOTOR_2_PIN_1, 0);
+      digitalWrite(MOTOR_2_PIN_2, 0);
+      stopFlag = true;
+    });
   }
   else if(!strcmp(variable, "left")) {
     Serial.println("Left");
@@ -215,6 +227,14 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 1);
     digitalWrite(MOTOR_2_PIN_1, 1);
     digitalWrite(MOTOR_2_PIN_2, 0);
+    stopFlag = false;
+    stopTimer.attach(5, [](){
+      digitalWrite(MOTOR_1_PIN_1, 0);
+      digitalWrite(MOTOR_1_PIN_2, 0);
+      digitalWrite(MOTOR_2_PIN_1, 0);
+      digitalWrite(MOTOR_2_PIN_2, 0);
+      stopFlag = true;
+    });
   }
   else if(!strcmp(variable, "right")) {
     Serial.println("Right");
@@ -222,6 +242,14 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 1);
+    stopFlag = false;
+    stopTimer.attach(5, [](){
+      digitalWrite(MOTOR_1_PIN_1, 0);
+      digitalWrite(MOTOR_1_PIN_2, 0);
+      digitalWrite(MOTOR_2_PIN_1, 0);
+      digitalWrite(MOTOR_2_PIN_2, 0);
+      stopFlag = true;
+    });
   }
   else if(!strcmp(variable, "backward")) {
     Serial.println("Backward");
@@ -229,6 +257,14 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 1);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 1);
+    stopFlag = false;
+    stopTimer.attach(5, [](){
+      digitalWrite(MOTOR_1_PIN_1, 0);
+      digitalWrite(MOTOR_1_PIN_2, 0);
+      digitalWrite(MOTOR_2_PIN_1, 0);
+      digitalWrite(MOTOR_2_PIN_2, 0);
+      stopFlag = true;
+    });
   }
   else if(!strcmp(variable, "stop")) {
     Serial.println("Stop");
@@ -236,6 +272,8 @@ static esp_err_t cmd_handler(httpd_req_t *req){
     digitalWrite(MOTOR_1_PIN_2, 0);
     digitalWrite(MOTOR_2_PIN_1, 0);
     digitalWrite(MOTOR_2_PIN_2, 0);
+    stopFlag = true;
+    stopTimer.detach();
   }
   else {
     res = -1;
@@ -246,7 +284,7 @@ static esp_err_t cmd_handler(httpd_req_t *req){
   }
 
   httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
-  return httpd_resp_send(req, NULL, 0);
+  return httpd_resp_send(req, "OK", 2); // Send "OK" response
 }
 
 void startCameraServer(){
@@ -265,6 +303,7 @@ void startCameraServer(){
     .handler   = cmd_handler,
     .user_ctx  = NULL
   };
+  
   httpd_uri_t stream_uri = {
     .uri       = "/stream",
     .method    = HTTP_GET,
@@ -348,5 +387,5 @@ void setup() {
 }
 
 void loop() {
-  
+
 }
