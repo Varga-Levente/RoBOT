@@ -6,6 +6,8 @@ A projekt keretében egy WiFi-vezérelt robotot fejlesztettem, melynek alapja az
 
 A robot és az alkalmazás fejlesztése egy hobbi projekt keretében valósult meg, melynek célja a mobil technológiák és a beágyazott rendszerek összekapcsolása, valamint a gyakorlati tapasztalatszerzés a hardver- és szoftverfejlesztés területén.
 
+![RoBot image](https://github.com/Varga-Levente/RoBOT/blob/64a0ad01a27c9c643ac76cb254f12b952675be54/IMGS/IMG_20240404_225451.jpg)
+
 ## Részletek
 
 - **Hardver:**
@@ -30,6 +32,8 @@ A robot és az alkalmazás fejlesztése egy hobbi projekt keretében valósult m
 A projekt részletes leírása és dokumentációja megtalálható a mellékelt PDF fájlban.
 
 A mobilalkalmazás külön repositoryban található, azonban jelenleg még nem publikus. (Későbbiekben linkelve lesz ide)
+
+![RoBot image2](https://github.com/Varga-Levente/RoBOT/blob/main/IMGS/IMG_20240404_225436.jpg)
 
 ## Fejlesztő:
   - Varga Levente
