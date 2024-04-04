@@ -86,6 +86,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
       img {  width: auto ;
         max-width: 100% ;
         height: auto ; 
+        transform: rotate(180deg); 
       }
     </style>
   </head>
