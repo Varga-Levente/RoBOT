@@ -4,7 +4,7 @@
 
 A projekt keretében egy WiFi-vezérelt robotot fejlesztettem, melynek alapja az ESP32 mikrovezérlő, és a kiegészítők között szerepel egy kamera, valamint 4 darab motor cserélhető akkumulátorokkal. A robot és az ehhez kapcsolódó mobilalkalmazás készítése a Debreceni Egyetem Informatikai Karának Mérnökinformatikus BSc képzésének Mobil Megoldások tantárgyában történt.
 
-A robot és az alkalmazás fejlesztése egy hobbi projekt keretében valósult meg, melynek célja a mobil technológiák és a beágyazott rendszerek összekapcsolása, valamint a gyakorlati tapasztalatszerzés a hardver- és szoftverfejlesztés területén.
+Egy hobbi projekt keretében kezdődött a robot fejlesztése, és ehhez egy mobil alkalmazás készült a mobil megoldások tárgy keretein belül. A cél az volt, hogy összekapcsoljam a mobil technológiákat és a beágyazott rendszereket, valamint hogy gyakorlati tapasztalatot szerezzek a hardver- és szoftverfejlesztés ezen területén.
 
 ![RoBot image](https://github.com/Varga-Levente/RoBOT/blob/64a0ad01a27c9c643ac76cb254f12b952675be54/IMGS/IMG_20240404_225451.jpg)
 
