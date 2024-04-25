@@ -31,7 +31,7 @@ Egy hobbi projekt keretében kezdődött a robot fejlesztése, és ehhez egy mob
 
 A projekt részletes leírása és dokumentációja megtalálható a mellékelt PDF fájlban.
 
-A mobilalkalmazás külön repositoryban található, azonban jelenleg még nem publikus. (Későbbiekben linkelve lesz ide)
+Mobil app [ITT](https://github.com/Varga-Levente/RoBOT-Controller-Android-APP)
 
 ![RoBot image2](https://github.com/Varga-Levente/RoBOT/blob/main/IMGS/IMG_20240404_225436.jpg)
 
